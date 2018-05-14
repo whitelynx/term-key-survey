@@ -1,2 +1,5 @@
 #!/bin/sh
-jq -s . ../term-key-survey-*.json > src/results.json
+
+SCRIPT_PATH=$(dirname "$(realpath "$0")")
+
+jq -s . "$SCRIPT_PATH/../"term-key-survey-*.json > "$SCRIPT_PATH/src/results.json"
