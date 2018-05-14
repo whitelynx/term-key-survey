@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
-const useCharMap = false;
+const escOnlyCharMap = {
+  '\x1B': '\\e',
+};
 
 const fishCharMap = {
   '\x1B': '\\e',
@@ -48,6 +50,8 @@ const readlineCharMap = {
   '\x11': '\\v',
 };
 
+const charMap = escOnlyCharMap;
+
 function hex(num) {
   return num.toString(16).toUpperCase();
 }
@@ -73,7 +77,7 @@ function multibyteHexCode(char, prefix = '\\x') {
 
 export function fishDisplayableChar(char) {
   const charCode = char.charCodeAt(0);
-  if (useCharMap && char in fishCharMap) {
+  if (char in charMap) {
     return fishCharMap[char];
   } else if (charCode >= 0x1 && charCode <= 0x1a) {
     return controlCode(char, '\\c');
