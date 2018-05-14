@@ -1,2 +1,2 @@
 #!/bin/sh
-jq -sc . ../term-key-survey-*.json > src/results.json
+jq -s . ../term-key-survey-*.json > src/results.json
