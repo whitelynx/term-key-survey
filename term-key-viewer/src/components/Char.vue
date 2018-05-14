@@ -1,11 +1,13 @@
 <template>
   <span
-    :class="{ escapeSequence: displayableChar[0] === '\\' }"
+    :class="charClass"
     :title="title"
     >{{ displayableChar }}</span>
 </template>
 
 <script>
+import _ from 'lodash';
+
 import { fishDisplayableChar } from '../displayableKey';
 
 export default {
@@ -20,12 +22,19 @@ export default {
     displayableChar() {
       return fishDisplayableChar(this.char);
     },
+    charClass() {
+      return {
+        escapeChar: this.displayableChar === '\\e',
+        escapeSequence: this.displayableChar[0] === '\\' && this.displayableChar.length > 1,
+        ctrlChar: this.displayableChar[0] === '^' && this.displayableChar.length > 1,
+      };
+    },
     title() {
       return [
         this.displayableChar, '\n',
-        this.char.charCodeAt(0).toString(8), ' oct\n',
+        _.padStart(this.char.charCodeAt(0).toString(8), 3, '0'), ' oct\n',
         this.char.charCodeAt(0), ' dec\n',
-        this.char.charCodeAt(0).toString(16).toUpperCase(), ' hex',
+        _.padStart(this.char.charCodeAt(0).toString(16).toUpperCase(), 2, '0'), ' hex',
       ].join('');
     },
   },
@@ -37,9 +46,16 @@ export default {
 span {
   color: #444;
   cursor: default;
+  white-space: pre;
 }
-.escapeSequence {
+span.escapeSequence {
   color: #008;
+}
+span.ctrlChar {
+  color: #800;
+}
+span.escapeChar {
+  color: #880;
 }
 span:hover {
   color: #000;
@@ -47,5 +63,11 @@ span:hover {
 }
 span.escapeSequence:hover {
   color: #006;
+}
+span.ctrlChar:hover {
+  color: #600;
+}
+span.escapeChar:hover {
+  color: #660;
 }
 </style>

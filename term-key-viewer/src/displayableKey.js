@@ -80,7 +80,7 @@ export function fishDisplayableChar(char) {
   if (char in charMap) {
     return fishCharMap[char];
   } else if (charCode >= 0x1 && charCode <= 0x1a) {
-    return controlCode(char, '\\c');
+    return controlCode(char, '^');
   } else if ((charCode >= 0x0 && charCode <= 0x1f) || charCode === 0x7f || (charCode >= 0x80 && charCode <= 0x9f)) {
     return hexCode(char, '\\x');
   } else if (charCode > 0xffff) {
