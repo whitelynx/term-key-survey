@@ -59,7 +59,7 @@ span.escapeChar {
 }
 span:hover {
   color: #000;
-  background: #eee;
+  background: #ddd;
 }
 span.escapeSequence:hover {
   color: #006;
