@@ -1,0 +1,23 @@
+[flake8]
+
+max-line-length = 120
+
+doctests = True
+
+ignore =
+	# E126: continuation line over-indented for hanging indent
+	E126,
+	# E127: continuation line over-indented for visual indent
+	E127,
+	# E128: continuation line under-indented for visual indent
+	E128,
+	# E201: whitespace after '{'
+	E201,
+	# E202: whitespace before '}'
+	E202,
+	# E265: block comment should start with '# '
+	E265,
+	# W503: line break before binary operator
+	W503
+
+# vim: ft=cfg
