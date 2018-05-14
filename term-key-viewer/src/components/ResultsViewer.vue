@@ -2,8 +2,8 @@
   <table>
     <tbody>
       <tr>
-        <th rowspan="2">Modifiers</th>
-        <th rowspan="2">Key</th>
+        <th rowspan="2" class="bottomLine">Modifiers</th>
+        <th rowspan="2" class="bottomLine">Key</th>
         <th v-for="result in keyedResults" :key="`${result.key}-term`">{{ result.environment['terminal program'] }}</th>
       </tr>
 
@@ -94,7 +94,7 @@ export default {
 table {
   border-collapse: collapse;
 }
-tr.bottomLine th, tr.bottomLine td {
+tr.bottomLine th, tr.bottomLine td, th.bottomLine, td.bottomLine {
   border-bottom: 1px solid #bbb;
 }
 th, td {
